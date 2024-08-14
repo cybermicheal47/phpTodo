@@ -1,0 +1,16 @@
+{
+    "name": "hp/phpmydemo",
+    "autoload": {
+        "psr-4": {
+            "MainClasses\\": "MainClasses/",
+            "App\\": "App/"
+        }
+    },
+    "authors": [
+        {
+            "name": "cybermicheal47",
+            "email": "65826184+cybermicheal47@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
