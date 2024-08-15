@@ -19,9 +19,23 @@
         <div class="mb-4">
             <h1 class="text-grey-darkest"> Edit Your Todo </h1>
             <div class="flex mt-4">
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Edit Todo">
-                <button class="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal">Submit</button>
-            </div>
+                <form action="/todo/edit?id=<?=$currentdata["id"] ?>" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker mb-4 " placeholder="Add Todo" name="name" value="<?= $currentdata['name'] ?? '' ?>">
+
+                    <textarea
+
+                            name="description"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
+                            placeholder="Add Description"
+                            rows="4"
+
+                    >    <?= $currentdata["description"] ?? '' ?></textarea>
+                    <!-- Form fields (e.g., input fields) should go here -->
+                    <button type="submit" class="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-gray-500 hover:bg-teal">
+                        edit
+                    </button>
+                </form>    </div>
         </div>
         <div>
 

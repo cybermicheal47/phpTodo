@@ -59,4 +59,13 @@ function loadView($name, $data = []){
     }
 }
 
+
+// Sanitize function to clean input data
+function sanitize($dirty) {
+    // Trim whitespace from the beginning and end of the input string
+    // Use filter_var to sanitize the string by encoding special characters
+    // FILTER_SANITIZE_SPECIAL_CHARS converts special characters to HTML entities
+    // This helps prevent XSS (Cross-Site Scripting) attacks
+    return filter_var(trim($dirty), FILTER_SANITIZE_SPECIAL_CHARS);
+}
 ?>

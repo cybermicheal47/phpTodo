@@ -18,9 +18,11 @@ $router->get('/todo','controllers/todo/index.php');
 $router->get('/todo/edit','controllers/todo/edit.php');
 $router->get('/todo/show','controllers/todo/show.php');
 $router->delete('/todo/delete','controllers/todo/delete.php');
-$router->post('/todo','controllers/todo/index.php');
+$router->post('/todo','controllers/todo/add.php');
 $router->post('/todo/edit','controllers/todo/edit.php');
-$router->post('/todo/delete','controllers/todo/delete.php');
+
+
+$router->put('/todo/edit','controllers/todo/edit.php');
 
 
 
