@@ -2,6 +2,8 @@
 
 namespace MainClasses;
 
+use MainClasses\middleware\Authorize;
+
 class Router
 {
     // An array to store all registered routes.
@@ -16,12 +18,13 @@ protected $routes = [];
      * @param string $controller   The controller that handles the route's logic.
      * @param array  $middleware   (Optional) An array of middleware to apply to the route.
      */
-public function registerRoute($method,$uri,$controller){
+public function registerRoute($method,$uri,$controller, $middleware = []){
     // Add the route details to the routes array.
     $this->routes[] = [
         'method' => $method,           // Store the HTTP method.
         'uri' => $uri,                 // Store the URI.
-        'controller' => $controller,   // Store the controller.
+        'controller' => $controller,       // Store the controller.
+        'middleware' => $middleware   //Store any middleware associated with the route.
 
 
     ];
@@ -38,8 +41,8 @@ public function registerRoute($method,$uri,$controller){
      * return void
      */
 
-    public function get ($uri,$controller){
-        $this->registerRoute('GET', $uri,$controller);
+    public function get ($uri,$controller,$middleware = []){
+        $this->registerRoute('GET', $uri,$controller,$middleware);
     }
 
 
@@ -50,8 +53,8 @@ public function registerRoute($method,$uri,$controller){
      * @param string controller
      * return void
      */
-    public function post ($uri,$controller){
-        $this->registerRoute('POST', $uri,$controller);
+    public function post ($uri,$controller,$middleware = []){
+        $this->registerRoute('POST', $uri,$controller,$middleware);
     }
 
 
@@ -62,8 +65,8 @@ public function registerRoute($method,$uri,$controller){
      * @param string controller
      * return void
      */
-    public function put ($uri,$controller){
-        $this->registerRoute('PUT', $uri,$controller);
+    public function put ($uri,$controller,$middleware = []){
+        $this->registerRoute('PUT', $uri,$controller,$middleware);
 
     }
 
@@ -75,8 +78,8 @@ public function registerRoute($method,$uri,$controller){
      * @param string controller
      * return void
      */
-    public function delete ($uri,$controller){
-        $this->registerRoute('DELETE', $uri,$controller);
+    public function delete ($uri,$controller,$middleware = []){
+        $this->registerRoute('DELETE', $uri,$controller,$middleware);
     }
 
 
@@ -97,6 +100,13 @@ public function registerRoute($method,$uri,$controller){
         // Loop through all registered routes to find a matching route
         foreach ($this->routes as $route) {
             if ($route['method'] === $method && $route['uri'] === $uri) {
+
+
+                // Apply middleware before the controller is executed
+                foreach ($route['middleware'] as $middleware) {
+                    (new Authorize())->handle($middleware);
+                }
+
 
                 // Load and execute the controller associated with the route
                 require  basePath("App/" . $route['controller']);

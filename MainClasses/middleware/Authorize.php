@@ -19,12 +19,14 @@ class Authorize
         // from accessing guest-only areas like the login or registration pages
         if($role == 'guest' && $this->isAuthenticated()){
             return header('Location: /');
+            exit();
 
         }  // If the role is 'auth' and the user is NOT authenticated (not logged in),
         // redirect them to the login page ('/login'). This ensures that only
         // authenticated users can access certain areas of the application.
         elseif ($role === 'auth' && !$this->isAuthenticated()){
             return header('Location: /login');
+            exit();
 
         }
 
