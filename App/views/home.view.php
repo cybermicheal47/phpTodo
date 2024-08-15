@@ -18,9 +18,17 @@ use MainClasses\Session;
 Stay Organized and Boost Productivity with Our  <br/> Intuitive To-Do List App</span>
 
             <?php if (Session::has('user')) : ?>
+                <div class="text-white-500 p-2">
+                    Welcome <?= Session::get('user')['email'] ?>
+                </div>
             <a href="/todo" <button class="bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-2 px-4 rounded">
                View Your TodoList
             </button> </a>
+
+
+                <a href="/logout" <button class="bg-red-500 mt-8 hover:bg-red-700 text-white text-center font-bold py-2 px-4 rounded">
+                    Logout
+                </button> </a>
             <?php else : ?>
 
 
