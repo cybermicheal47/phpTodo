@@ -1,7 +1,9 @@
 <?php
 use MainClasses\Database;
+use MainClasses\Session;
 $config = require basePath("config/db.php");
 $db = new Database($config);
+
 
 $allowedFields = [
     'name',
@@ -15,7 +17,7 @@ $allowedFields = [
 
 
 $NewlistingData = array_intersect_key($_POST, array_flip($allowedFields));
-$NewlistingData['user_id'] = 2;
+$NewlistingData['user_id'] =  Session::get('user')['id']; //get current logged in user id
 
 $NewlistingData = array_map('sanitize', $NewlistingData);
 
@@ -31,7 +33,7 @@ foreach ($allowedFields as $field) {
 
 if (!empty($errors)) {
 //load the todolist in the db and pass on  to do "loadview" along side with the error
-    $userId = 2;
+    $userId = Session::get('user')['id']; //get current logged in user id
     $params = [
         'user_id' => $userId
     ];

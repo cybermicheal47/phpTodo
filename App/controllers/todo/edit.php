@@ -3,6 +3,7 @@ use MainClasses\Database;
 use MainClasses\Validation;
 $config = require basePath("config/db.php");
 $db = new Database($config);
+use MainClasses\Session;
 
 
 
@@ -16,12 +17,19 @@ if (!$id) {
 }
 
 $params = ['id' => $id];
-$currentdata = $db->query('SELECT * FROM todo WHERE id = ' . $id)->fetch();
+$currentdata = $db->query('SELECT * FROM todo WHERE id = :id', $params)->fetch();
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['_method']) && $_POST['_method'] === 'PUT') {
 
 
-
+if(Session::get('user')['id'] !== $currentdata['user_id']) {
+    http_response_code(403);
+    Session::set('error', 'You are not authorized to perform this action.');
+    return header('Location: /');
+    exit;
+}
 
 
 

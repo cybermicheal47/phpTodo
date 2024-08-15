@@ -16,6 +16,19 @@
 
 </head>
 <body>
+
+<?php if (isset($errors)) : ?>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <strong class="font-bold">Error!</strong>
+        <ul class="list-disc pl-5">
+            <?php foreach ($errors as $error): ?>
+                <li><?= $error ?></li>
+
+
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
 <div class="font-sans text-gray-900 antialiased">
     <div class="bg-gray-50  min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-[#f8f4f3]">
         <div>
@@ -25,7 +38,7 @@
         </div>
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="/login">
 
                 <div class="py-8">
                     <center>
@@ -34,7 +47,7 @@
                 </div>
 
                 <div>
-                    <label class="block font-medium text-sm text-gray-700" for="email" value="Email" />
+                    <label class="block font-medium text-sm text-gray-700" for="email" value="email" />
                     <input type='email'
                            name='email'
                            placeholder='Email'

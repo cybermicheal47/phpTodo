@@ -2,8 +2,12 @@
 require __DIR__ . "/../vendor/autoload.php";
 use MainClasses\Router;
 require '../helpers.php';
-
+use MainClasses\Session;
 $router = new Router();
+
+
+
+Session::start();
 
 // get routes
 $routes = require basePath('routes.php');

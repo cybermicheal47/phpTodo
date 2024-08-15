@@ -16,6 +16,21 @@
 
 </head>
 <body>
+
+
+<?php if (isset($errors)) : ?>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <strong class="font-bold">Error!</strong>
+        <ul class="list-disc pl-5">
+            <?php foreach ($errors as $error): ?>
+                <li><?= $error ?></li>
+
+
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
 <div class="font-sans text-gray-900 antialiased">
     <div class="bg-gray-50  min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-[#f8f4f3]">
         <div>
@@ -25,16 +40,14 @@
         </div>
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="/register">
 
                 <div class="py-8">
-                    <center>
-                        <!--                        <span class="text-2xl font-semibold">Log In</span>-->
-                    </center>
+
                 </div>
 
                 <div>
-                    <label class="block font-medium text-sm text-gray-700" for="email" value="Email" />
+                    <label class="block font-medium text-sm text-gray-700" for="email" value="email" />
                     <input type='email'
                            name='email'
                            placeholder='Email'
@@ -45,7 +58,7 @@
                 <div class="mt-4 ">
                     <label class="block font-medium text-sm text-gray-700" for="password" value="Password" />
                     <div class="relative">
-                        <input id="password" type="password" name="password" placeholder="Password" required autocomplete="current-password" class = 'w-full rounded-md py-2.5 px-4 border text-sm outline-[#f84525]'>
+                        <input id="password" type="password" name="password" placeholder="Password" required  class = 'w-full rounded-md py-2.5 px-4 border text-sm outline-[#f84525]'>
 
                         <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
 
@@ -56,7 +69,7 @@
                 <div class="mt-4 pb-10">
                     <label class="block font-medium text-sm text-gray-700" for="password" value="Password" />
                     <div class="relative">
-                        <input id="password" type="password" name="password_confirmation" placeholder="Confirm Password" required autocomplete="current-password" class = 'w-full rounded-md py-2.5 px-4 border text-sm outline-[#f84525]'>
+                        <input id="password" type="password" name="password_confirmation" placeholder="Confirm Password" required  class = 'w-full rounded-md py-2.5 px-4 border text-sm outline-[#f84525]'>
 
                         <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
 
